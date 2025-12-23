@@ -24,9 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-elj-fkdzw=6jx5xb)l9qb_anc4e0=&5idx33e6g6vvxc#ar7vl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# MODIFIED FOR HOSTING: Returns False if on Render, True if on Localhost
+DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = []
+# MODIFIED FOR HOSTING: Allows Render URL to connect
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -52,8 +54,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware", # Essential for hosting static files
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # <-- This is in the correct place
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,6 +130,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# MODIFIED FOR HOSTING: Tells Django where to collect files for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# MODIFIED FOR HOSTING: Enables WhiteNoise to serve compressed files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # This tells Django where to find your *project-level* static files
 STATICFILES_DIRS = [
