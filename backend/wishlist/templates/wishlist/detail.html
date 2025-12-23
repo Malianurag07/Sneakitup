@@ -1,0 +1,45 @@
+{% extends "products/base.html" %}
+
+{% block title %}Your Wishlist{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <h1 class="page-title">Your Wishlist</h1>
+
+    {% if wishlist %}
+        <table class="cart-table">
+           <thead>
+    <tr>
+        <th>Product</th>
+        <th>Size</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+    </tr>
+</thead>
+
+<tbody>
+    {% for item in wishlist %}
+    <tr>
+        <td>
+            <div class="cart-item-info">
+                {% if item.product.main_image %}
+                    <img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}" class="cart-item-image">
+                {% endif %}
+                {{ item.product.name }}
+            </div>
+        </td>
+        <td>{{ item.size|default:"8" }}</td>
+        <td>${{ item.product.price }}</td>
+        <td><a href="{% url 'wishlist:move_to_cart' item.product.id %}" class="btn-primary">Move to Cart</a></td>
+        <td><a href="{% url 'wishlist:wishlist_remove' item.product.id %}" class="btn-remove">Remove</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+        </table>
+    {% else %}
+        <p class="cart-empty">Your wishlist is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}

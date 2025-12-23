@@ -1,0 +1,94 @@
+{% extends "products/base.html" %}
+
+{% block title %}
+{{ product.name }} - Sneakitup
+{% endblock %}
+
+{% block content %}
+
+<div class="page-container">
+    <div class="product-detail-layout">
+
+
+    <!-- Column 1: Product Image -->
+    <div class="product-image-column">
+        <a href="#img-modal">
+            {% if product.main_image %}
+                <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-detail-image">
+            {% else %}
+                <img src="https://placehold.co/600x600/333/FFF?text=No+Image" alt="No Image Available" class="product-detail-image">
+            {% endif %}
+            <p class="zoom-hint">Click image to zoom</p>
+        </a>
+    </div>
+
+    <!-- Column 2: Product Info -->
+    <div class="product-info-column">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <span class="product-price">${{ product.price }}</span>
+        <p class="product-description">
+            {{ product.description|default:"No description available for this product." }}
+        </p>
+
+<form action="{% url 'cart:add_to_cart' product.id %}" method="post" class="product-actions">
+    {% csrf_token %}
+
+    <div class="quantity-wrapper">
+        <label for="id_quantity">Quantity:</label>
+        <input type="number" name="quantity" id="id_quantity" value="1" min="1" required>
+    </div>
+
+    <div class="quantity-wrapper">
+        <label for="size">Select Size:</label>
+        <select name="size" id="size" required>
+            <option value="" disabled selected>Select size</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn-primary">Add to Cart</button>
+</form>
+
+
+
+
+        <!-- WISHLIST BUTTON -->
+        <a href="{% url 'wishlist:wishlist_add' product.id %}" class="btn-wishlist" style="margin-top: 15px; display: inline-block;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06
+                         a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23
+                         l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                </path>
+            </svg>
+            Add to Wishlist
+        </a>
+    </div>
+</div>
+
+
+</div>
+
+<!-- IMAGE ZOOM MODAL -->
+
+<div class="modal-overlay" id="img-modal">
+    <a href="#" class="modal-close-bg"></a>
+
+
+<div class="modal-content">
+    {% if product.main_image %}
+        <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+    {% else %}
+        <img src="https://placehold.co/600x600/333/FFF?text=No+Image" alt="No Image Available">
+    {% endif %}
+</div>
+
+<a href="#" class="modal-close-btn">&times;</a>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+# Python junk
+__pycache__/
+*.pyc
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Database (Optional: remove this line if you WANT to upload your current products)
+db.sqlite3
+
+
+# VS Code settings
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db

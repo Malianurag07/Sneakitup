@@ -1,0 +1,34 @@
+{% extends "products/base.html" %}
+
+{% block title %}
+    Shop All Shoes
+{% endblock %}
+
+{% block content %}
+    <div class="page-container">
+        <h1 class="page-title">Shop All</h1>
+    
+        <div class="shop-grid">
+    
+            {% for shoe in shoes %}
+                <div class="product-card">
+                    
+                    <!-- Make sure shoe image exists before showing it -->
+                    {% if shoe.main_image %}
+                        <img src="{{ shoe.main_image.url }}" alt="{{ shoe.name }}">
+                    {% endif %}
+
+                    <h3>{{ shoe.name }}</h3>
+                    <p>${{ shoe.price }}</p>
+                    
+                    <!-- This link is now fixed -->
+                    <a href="{% url 'products:product_detail' shoe.id %}" class="btn">View Details</a>
+                </div>
+            {% empty %}
+                <p class="cart-empty" style="grid-column: 1 / -1;">No shoes are in stock. Check back later!</p>
+            {% endfor %}
+    
+        </div>
+    </div>
+{% endblock %}
+

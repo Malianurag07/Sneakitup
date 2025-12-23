@@ -1,0 +1,634 @@
+/* --- Base Styles --- */
+body {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+    padding: 0;
+
+    /* This is the corrected background rule.
+       It uses .jpg instead of .jpeg
+    */
+    background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('../images/bg_lines.jpg');
+    
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* This makes the BG stay still */
+
+    color: #FDFBF5; /* Default text is now light */
+    position: relative;
+}
+
+h1, h2, h3 {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 2px;
+    color: #4B0082;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5vw;
+    background-color: rgba(18, 18, 18, 0.8); /* Translucent dark header */
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid #4B0082;
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 100;
+}
+
+header img {
+    height: 60px;
+    width: auto;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+header nav a {
+    font-family: 'Merriweather', serif;
+    text-decoration: none;
+    font-weight: 700;
+    color: #FDFBF5; /* Light nav text */
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #FFA500;
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #121212;
+    border-top: 2px solid #4B0082;
+    margin-top: 60px;
+    position: relative;
+    clear: both;
+    width: 100%;
+}
+
+/* --- SCROLLY-TELLING STYLES --- */
+
+/* This targets the <main> tag ONLY on the homepage 
+   by overriding the .page-container styles */
+main {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    backdrop-filter: none;
+    box-shadow: none;
+}
+
+.sticky-shoe-container {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.shoe-wrapper {
+    width: 40%;
+    /* JavaScript will control the transform */
+    filter: drop-shadow(10px 10px 30px rgba(255,165,0,0.3)); /* Orange glow */
+    transition: transform 0.1s ease-out; /* Faster transition for JS */
+}
+
+#sticky-shoe-image {
+    width: 100%;
+    height: auto;
+}
+
+.scroll-content {
+    position: relative;
+    z-index: 5;
+    margin-top: -100vh;
+}
+
+.scroll-scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.scroll-scene.is-active {
+    opacity: 1;
+    z-index: 20;
+}
+
+/* --- Scene Titles --- */
+.scene-title-bg {
+    font-family: 'Bangers', cursive;
+    font-size: 18vw; /* Made text 10% smaller */
+    color: #FFA500; /* Solid Orange */
+    opacity: 0.8; /* Solid, but not 100% */
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    z-index: 1;
+}
+
+/* Info Boxes */
+.scene-box {
+    position: absolute;
+    width: 250px;
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.7); 
+    border: 2px solid #4B0082;
+    backdrop-filter: blur(10px);
+    z-index: 30;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.scene-box h3 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    color: #FDFBF5;
+    margin-top: 0;
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #FFA500;
+}
+
+.scene-box p {
+    font-family: 'Merriweather', serif;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.spec-text {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #ccc;
+}
+
+.price-box {
+    font-family: 'Bangers', cursive;
+    font-size: 2.5rem;
+    color: #FFA500;
+    margin: 0;
+}
+
+.splatter-box {
+    border: none;
+    background: transparent;
+    backdrop-filter: none;
+    text-align: center;
+    box-shadow: none;
+}
+.splatter-box h3 {
+    font-size: 3rem;
+    color: #4B0082;
+    -webkit-text-stroke: 1px #FFA500;
+    border: none;
+}
+
+/* Button */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #FFA500;
+    color: #000;
+}
+.btn-primary:hover {
+    background-color: #4B0082;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+
+/* --- Shop Page & Generic Page Styles --- */
+
+/* This is the main box for all non-homepage content */
+.page-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 40px auto; /* 40px top/bottom margin */
+    background-color: rgba(18, 18, 18, 0.7); /* Dark translucent background */
+    border: 2px solid #4B0082;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.page-title {
+    font-family: 'Bangers', cursive;
+    font-size: 5rem;
+    color: #FFA500;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.shop-grid {
+    display: grid;
+    /* Responsive columns */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px;
+}
+
+.product-card {
+    background: rgba(10, 10, 10, 0.7); 
+    border: 2px solid #4B0082;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255,165,0,0.3); /* Orange glow on hover */
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain; /* Changed from 'cover' to 'contain' */
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 2.5rem;
+    color: #FDFBF5; /* Light text */
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFA500; /* Orange price */
+    margin-bottom: 15px;
+}
+
+.product-card .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    background-color: #FFA500; 
+    color: #000;
+}
+
+.product-card .btn:hover {
+    background-color: #4B0082;
+    color: #fff;
+}
+
+
+/* --- Product Detail Page Styles --- */
+
+.product-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.product-image-column {
+    position: relative;
+    cursor: zoom-in;
+}
+
+.product-detail-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #4B0082;
+}
+
+.zoom-hint {
+    font-size: 0.9rem;
+    color: #ccc;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.product-info-column {
+    position: sticky; /* Makes info box "stick" as you scroll */
+    top: 120px; /* (Header height + 20px) */
+}
+
+.product-title {
+    font-family: 'Bangers', cursive;
+    font-size: 5rem;
+    line-height: 1;
+    color: #FFA500;
+    margin: 0 0 10px 0;
+}
+
+.product-price {
+    font-family: 'Bangers', cursive;
+    font-size: 3rem;
+    color: #FDFBF5;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.product-description {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-wishlist {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 25px;
+    background: transparent;
+    border: 2px solid #4B0082;
+    color: #FDFBF5;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-wishlist svg {
+    stroke: #FFA500; /* Orange heart outline */
+    transition: all 0.3s ease;
+}
+
+.btn-wishlist:hover {
+    background-color: #4B0082;
+    border-color: #4B0082;
+}
+
+.btn-wishlist:hover svg {
+    stroke: #FDFBF5;
+    fill: #FFA500; /* Fill heart on hover */
+}
+
+
+/* --- Image Zoom Modal Styles --- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 200;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Hide by default */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-close-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 80vw;
+    max-height: 90vh;
+}
+
+.modal-content img {
+    width: 100%;
+    height: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: #fff;
+    font-size: 3rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- Add to Cart Form Styles --- */
+
+.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-wrapper label {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+.quantity-wrapper input[type="number"] {
+    width: 60px;
+    padding: 12px;
+    background-color: #333;
+    border: 2px solid #4B0082;
+    color: #FDFBF5;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* --- NEW SELECT DROPDOWN STYLES --- */
+select {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 2px solid #4B0082;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-family: 'Merriweather', serif;
+}
+
+select:focus {
+    outline: none;
+    border-color: #ffae00;
+}
+
+
+/* --- Cart Page Styles --- */
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.cart-table th, .cart-table td {
+    padding: 15px;
+    border-bottom: 1px solid #4B0082;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.cart-table th {
+    font-family: 'Bangers', cursive;
+    font-size: 1.5rem;
+    color: #FFA500;
+    letter-spacing: 1px;
+}
+
+.cart-table .cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.cart-item-info {
+    display: flex;
+    align-items: center;
+}
+
+.cart-item-info a {
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    color: #FDFBF5;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+.cart-item-info a:hover {
+    color: #FFA500;
+}
+
+.cart-table input[type="number"] {
+    width: 70px;
+    padding: 8px;
+    background-color: #333;
+    border: 2px solid #4B0082;
+    color: #FDFBF5;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.btn-update {
+    background-color: #4B0082;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-update:hover {
+    background-color: #FFA500;
+    color: #000;
+}
+
+.btn-remove {
+    color: #FFA500;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-remove:hover {
+    color: #FDFBF5;
+}
+
+/* --- Cart Summary Box --- */
+.cart-summary {
+    width: 300px;
+    float: right;
+    background: rgba(10, 10, 10, 0.7);
+    border: 2px solid #4B0082;
+    border-radius: 8px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.cart-summary h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    color: #FFA500;
+    margin-top: 0;
+    border-bottom: 2px solid #4B0082;
+    padding-bottom: 10px;
+}
+
+.cart-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.cart-summary li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.cart-summary .total {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #FFA500;
+}
+
+.cart-summary .btn-primary {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box; /* Makes padding behave */
+}
+
+.cart-empty {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 40px;
+}

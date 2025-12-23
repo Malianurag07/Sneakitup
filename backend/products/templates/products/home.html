@@ -1,0 +1,84 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block title %}
+    Welcome to Sneakitup!
+{% endblock %}
+
+{% block content %}
+    
+    <!-- The Sticky Shoe Column -->
+    <div class="sticky-shoe-container">
+        <div class="shoe-wrapper">
+            {% if shoe and shoe.main_image %}
+                <img src="{{ shoe.main_image.url }}" alt="{{ shoe.name }}" id="sticky-shoe-image">
+            {% else %}
+                <div style="width: 100%; height: 400px; background: #eee; display: grid; place-items: center; font-family: 'Merriweather'; border: 2px dashed #4B0082; color: #333;">
+                    Please add a Shoe (with an image) in the admin
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- The Scrolling Content Area -->
+    <div class="scroll-content">
+
+        <!-- SCENE 1: REDEFINE -->
+        <section class="scroll-scene" id="scene-1">
+            <h2 class="scene-title-bg">REDEFINE</h2>
+
+            <div class="scene-box" style="top: 25%; left: 5%;">
+                <h3>The 001 / Prototype</h3>
+                <p>This is the {{ shoe.name|default:"flagship shoe" }}. Our premium canvas, redesigned from the sole up by you.
+                {{ shoe.description|default:"It's your new favorite." }}</p>
+            </div>
+
+            <div class="scene-box" style="top: 40%; right: 10%;">
+                <h3>SPECS</h3>
+                <p class="spec-text"><strong>Materials:</strong> Premium Leather, Vulcanized Rubber</p>
+                <p class="spec-text"><strong>Fit:</strong> True to Size</p>
+                <p class="spec-text"><strong>Price:</strong> <span class="price-box">${{ shoe.price|default:"99.99" }}</span></p>
+            </div>
+        </section>
+
+        <!-- SCENE 2: YOUR FIT -->
+        <section class="scroll-scene" id="scene-2">
+            <h2 class="scene-title-bg">YOUR FIT</h2>
+
+            <div class="scene-box" style="top: 30%; left: 10%; width: 300px;">
+                <h3>Your Canvas. Your Vibe.</h3>
+                <p>Use our new 3D customizer. Choose your laces, your sole, 
+                your materials. If you can dream it, you can design it.</p>
+                <a href="#" class="btn-primary" style="margin-top: 20px;">Design Now</a>
+            </div>
+        </section>
+
+        <!-- SCENE 3: THE TECH -->
+        <section class="scroll-scene" id="scene-3">
+            <h2 class="scene-title-bg">THE TECH</h2>
+
+            <div class="scene-box splatter-box" style="top: 25%; left: 5%;">
+                <h3>Cloud Sole</h3>
+                <p>Our proprietary foam composite. Feels like walking on air. Seriously.</p>
+            </div>
+
+            <div class="scene-box splatter-box" style="top: 55%; right: 10%;">
+                <h3>Dura-Stitch</h3>
+                <p>Premium, waxed-cotton laces and reinforced stitching. This shoe is built to last.</p>
+            </div>
+        </section>
+
+        <!-- SCENE 4: SNEAKITUP -->
+        <section class="scroll-scene" id="scene-4">
+            <h2 class="scene-title-bg">SNEAKITUP</h2>
+
+            <div class="scene-box" style="top: 35%; right: 5%; width: 300px;">
+                <h3>Join the Hype</h3>
+                <p>Tag us @sneakitup to be featured. 
+                See what others have created.</p>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>{% block title %}Sneakitup{% endblock %}</title>
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- Background Image -->
+<style>
+    body {
+        background-image: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), 
+                          url("{% static 'images/bg_lines.jpeg' %}");
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    footer {
+        padding: 20px;
+        text-align: center;
+        background-color: #121212;
+        border-top: 2px solid #4B0082;
+        margin-top: 60px;
+        position: relative;
+        width: 100%;
+        color: #fff;
+        font-family: 'Merriweather', serif;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 40px;
+        background-color: rgba(0, 0, 0, 0.85);
+        border-bottom: 2px solid #4B0082;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-family: 'Merriweather', serif;
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        color: #ffae00;
+    }
+</style>
+
+
+</head>
+
+<body>
+
+<header>
+    <!-- Logo -->
+    <a href="{% url 'products:home' %}">
+        <img src="{% static 'images/logo.png' %}" alt="Sneakitup Logo" height="60">
+    </a>
+
+
+<!-- Navigation Menu -->
+<nav>
+    <ul>
+        <li><a href="{% url 'products:home' %}">Home</a></li>
+        <li><a href="{% url 'products:shop' %}">Shop</a></li>
+        <li><a href="{% url 'wishlist:wishlist_detail' %}">❤️ Wishlist</a></li>
+        <li><a href="{% url 'cart:cart_detail' %}">🛒 Cart</a></li>
+        <li><a href="{% url 'customizer:index' %}">Customize</a></li>
+    </ul>
+</nav>
+
+
+</header>
+
+<!-- Page Content -->
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- Footer -->
+
+<footer>
+    <p>&copy; 2025 Sneakitup. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript -->
+
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
