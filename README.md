@@ -6,15 +6,21 @@
 
 ## 📸 Screenshots
 
-### 🏠 Hero & Home Page
-![Hero Page](Screenshot%202025-12-23%20230409.png)
+### 🏠 Home Page
+![Home Page](Screenshot%202025-12-23%20230409.png)
+
+### 🛍️ Shop & Products
+![Shop Page](Screenshot%202025-12-23%20230422.png)
+
+### ❤️ Wishlist
+![Wishlist Page](Screenshot%202025-12-23%20230439.png)
+
+### 🛒 Shopping Cart & Checkout
+![Cart Page](Screenshot%202025-12-23%20230450.png)
 
 ### 🎨 3D Customizer (Interactive Design Studio)
 *Users can rotate, zoom, and recolor specific parts of the shoe (Laces, Sole, Body, etc.) in real-time.*
-![3D Customizer](Screenshot%202025-12-23%20230422.png)
-
-### ❤️ Wishlist & 🛒 Shopping Cart
-![Wishlist Page](Screenshot%202025-12-23%20230439.png)
+![3D Customizer](Screenshot%202025-12-23%20230614.png)
 
 ---
 
